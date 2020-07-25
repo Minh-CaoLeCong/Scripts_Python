@@ -30,15 +30,31 @@ def RecordVideo():
     fps = 50                        # frame per second
     resolutionWidth = 640           # Width of frame
     resolutionHeight = 480          # Height of frame
-    camera = 0                      # select camera device
+    cameraDevice = 0                # select camera device
     check1 = False
     check2 = False
 
+    cameraDevice = int(input("[INFOR]: Choose camera device: "))
+
     # Create a VideoCapture object
-    cap = cv2.VideoCapture(camera)
+    cap = cv2.VideoCapture(cameraDevice)
     # Check if camera opened successfully
     if (cap.isOpened() == False): 
         print("[ERROR]: Unable to read camera feed")
+
+    # try:
+    #     # Create a VideoCapture object
+    #     cap = cv2.VideoCapture(cameraDevice)
+    #     break
+    # except:
+    #     # Check if camera opened successfully
+    #     if (cap.isOpened() == False): 
+    #         print("[ERROR]: Unable to read camera feed")
+    #     print("[ERROR]: Cannot ")
+    #     keyCameraDevice = input("[INFOR]: Change another camera? y/n?: ")
+    #     if keyCameraDevice == "y":
+    #         cameraDevice = input("[INFOR]: Camera device: ")
+
     # init resolution
     cap.set(3, resolutionWidth)
     cap.set(4, resolutionHeight)
@@ -56,7 +72,7 @@ def RecordVideo():
     print("[INFOR]: Frame per second of video record: " + str(fps))
     print("[INFOR]: Width: " + str(resolutionWidth))                 # Width of frame
     print("[INFOR]: Height: " + str(resolutionHeight))               # Height of frame
-    print("[INFOR]: Camera device: " + str(camera))                  # camera decive
+    print("[INFOR]: Camera device: " + str(cameraDevice))                  # camera decive
 
     print("----------------------------------------------")
     print("[GUIDE]: Press 'q' key to quit")
@@ -156,7 +172,7 @@ def RecordVideo():
                     cap.set(4, resolutionHeight)
                     time.sleep(1.0)
                 elif keyCommand == "cam": # select camera device
-                    camera = int(input("Select camera: "))
+                    cameraDevice = int(input("Select camera: "))
                     cv2.destroyAllWindows()
                     cap.release()
                     print("[INFOR]: Wait a second to re-initialize...")
